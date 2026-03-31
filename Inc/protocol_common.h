@@ -2,7 +2,7 @@
  * protocol_common.h
  *
  *  Created on: Mar 12, 2026
- *      Author: vlado
+ *      Author: AVA
  */
 
 #ifndef INC_PROTOCOL_COMMON_H_
@@ -14,6 +14,9 @@
 
 /* Идентификатор датчика */
 #define SENSOR_ID 			0x2C
+
+/* Длина кадра ответа */
+#define CONTROL_FRAME_LEN 	10
 
 /* Состояние датчика */
 #define STATE_READY 		0x01 		// устройство готово

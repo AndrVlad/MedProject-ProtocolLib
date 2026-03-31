@@ -48,9 +48,14 @@ void fillBuffer(uint8_t* buf, uint8_t fill_symbol) {
 void initSPIConnection() {
 	spi_state = SPI_MODE_RX;
 	switchBuffer(spi_state);
-	fillBuffer(dummy_frame, 0xA);
+	fillBuffer(dummy_frame, 0xAA);
 	initResponseBuffer();
 };
+
+void resetSPIConnection() {
+	initSPIConnection();
+	response_ready = 0;
+}
 
 void initResponseBuffer() {
 	wait_response_frame[0] = 0xFA;
@@ -93,5 +98,4 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
         switchBuffer(spi_state);
     }
 }
-
 
