@@ -16,5 +16,33 @@
 
 2. В файле main.h объявить:
 extern SPI_HandleTypeDef hspi2;
+extern TIM_HandleTypeDef htim2;
+extern uint8_t data_buf[256];
+extern uint8_t page_pos_ptr ;
+extern volatile uint16_t page_ptr;
 
-3. Сконфигурировать соответствующий схеме вывод в режим Input. Данный вывод играет роль программно определяемого CS.
+3. Сконфигурировать соответствующий схеме вывод CS для SPI связи с концентратором в режим 
+External Interrupt Mode with Falling Edge
+
+4. Cконфигурировать вывод сигнала CTRL.
+Использовать TIM2 для настройки параметров:
+- Clock Source = Internal Clock
+- Channel 1 = PWM Generation CH1
+- One Pulse Mode = Enabled
+- Prescaler = 72
+- Counter Period = 501
+- Mode = PWM mode 1
+- Pulse = 1
+- CH Polarity = High
+Остальные настройки оставить по умолчанию
+
+Для датчика необходимо переопределить функции (при необходимости):
+1. sensorChipInit()
+2. resetSensorChip
+3. stopSensorChip()
+4. enableSensorChip()
+5. startMeasurement()
+6. stopMeasurement()
+7. sensorSelfchek()
+8. startMeasurement()
+9. stopMeasurement()

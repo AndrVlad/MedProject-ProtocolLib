@@ -9,7 +9,7 @@
 #include "protocol_common.h"
 #include "protocol_parser.h"
 #include "SPI_Connection.h"
-#include "w25q_spi.h"
+#include "../Drivers/W25Q/w25q_spi.h"
 #include "sensor_utils.h"
 
 #define LIMIT_FLASH_PAGE_NUM 65536
@@ -479,6 +479,9 @@ void sensorInit() {
 	W25_Ini(0);
 	// инициализация SPI-соединения
 	initSPIConnection();
+
+	// инициализация микросхемы датчика
+	sensorChipInit();
 
 	// включение таймера формирования сигнала CTRL
 	HAL_TIM_OnePulse_Start(&htim2, TIM_CHANNEL_1);

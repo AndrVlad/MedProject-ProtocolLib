@@ -17,5 +17,6 @@ bool sensorSelfCheck();
 void resetSensor();
 void startMeasurement();
 void stopMeasurement();
+void sensorChipInit();
 
 #endif /* INC_SENSOR_UTILS_H_ */
